@@ -1,17 +1,12 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { TravelService } from './travel.service';
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service.js';
 
-@Controller('travel')
-export class TravelController {
-  constructor(private readonly travelService: TravelService) {}
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
 
   @Get()
-  findAll() {
-    return this.travelService.findAll();
-  }
-
-  @Post()
-  createTravel(): string {
-    return '<Planifier un nouveau voyage ici>';
+  getHello(): string {
+    return this.appService.getHello();
   }
 }

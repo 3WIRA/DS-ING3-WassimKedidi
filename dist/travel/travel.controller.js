@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,19 +7,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TravelController = void 0;
-const common_1 = require("@nestjs/common");
-const travel_service_1 = require("./travel.service");
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+import { Controller, Get, Param, ParseIntPipe, Post, } from '@nestjs/common';
+import { TravelService } from './travel.service.js';
 let TravelController = class TravelController {
     travelService;
     constructor(travelService) {
         this.travelService = travelService;
     }
+    findOne(id) {
+        return this.travelService.findOne(id);
+    }
+    findAll() {
+        return this.travelService.findAll();
+    }
+    createTravel() {
+        return '<Planifier un nouveau voyage ici>';
+    }
 };
-exports.TravelController = TravelController;
-exports.TravelController = TravelController = __decorate([
-    (0, common_1.Controller)('travel'),
-    __metadata("design:paramtypes", [travel_service_1.TravelService])
+__decorate([
+    Get(':id'),
+    __param(0, Param('id', ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], TravelController.prototype, "findOne", null);
+__decorate([
+    Get(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TravelController.prototype, "findAll", null);
+__decorate([
+    Post(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], TravelController.prototype, "createTravel", null);
+TravelController = __decorate([
+    Controller('travel'),
+    __metadata("design:paramtypes", [TravelService])
 ], TravelController);
+export { TravelController };
 //# sourceMappingURL=travel.controller.js.map
