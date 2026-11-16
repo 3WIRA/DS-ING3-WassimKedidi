@@ -13,7 +13,13 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     Module({
-        imports: [ConfigModule.forRoot(), TravelModule],
+        imports: [
+            ConfigModule.forRoot({
+                envFilePath: ['.env', 'src/.env'],
+                isGlobal: true,
+            }),
+            TravelModule,
+        ],
         controllers: [AppController],
         providers: [AppService],
     })

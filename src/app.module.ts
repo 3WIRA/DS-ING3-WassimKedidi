@@ -5,7 +5,13 @@ import { AppService } from './app.service.js';
 import { TravelModule } from './travel/travel.module.js';
 
 @Module({
-  imports: [ConfigModule.forRoot(), TravelModule],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env', 'src/.env'],
+      isGlobal: true,
+    }),
+    TravelModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
